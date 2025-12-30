@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!-- Basic differential drive mobile base -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot">
+  
+   <xacro:include filename="hexapod_robot_gazebo.xacro" />
+   <xacro:include filename="ros2_hexapod_control.xacro" />
+
+  <xacro:include filename="camera_hexapod.xacro" />  
+  <xacro:include filename="imu_hexapod.xacro" />  
+  <xacro:include filename="magnetometer_hexapod.xacro" />  
+  <xacro:include filename="gps_hexapod.xacro" /> 
+  <xacro:include filename="ultrasonic_hexapod.xacro" /> 
+  <xacro:include filename="ir_left_distance_sensor_hexapod.xacro" /> 
+  <xacro:include filename="ir_right_distance_sensor_hexapod.xacro" /> 
+  <!--<xacro:include filename="lidar_hexapod.xacro" /> -->
+
+  <!--<xacro:include filename="holder_pi_hexapod.xacro" /> -->
+
+  <xacro:property name="M_PI" value="3.14159274"/>
+
+  <xacro:include filename="base_uttu.urdf.xacro"/>
+  <xacro:include filename="legs_uttu.urdf.xacro"/>
+
+
+  <material name="gray">
+    <color rgba="0.5 0.5 0.5 1.0"/>
+  </material>
+  <material name="white">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+  </material>
+
+
+  <!-- =============== Link & Joint =============== -->
+  <!-- Hexapod Base -->
+  <link name="base_footprint"/> <!--link name="base_footprint"/ -->
+  
+  <xacro:base_uttu_v0 parent="base_footprint"> <!-- xacro:base_v0 parent="base_footprint" -->
+	<origin xyz="0 0 0.18"/>
+  </xacro:base_uttu_v0>
+
+  <!-- Hexapod Legs -->
+  <xacro:leg_uttu_v0 parent="base_link" suffix="rf" xyz="0.1248 -0.06164 0.001116" rpy="0 4.7123 0.7853981633974483"/>
+  <xacro:leg_uttu_v0 parent="base_link" suffix="rm" xyz="0 -0.1034 0.001116" rpy="0 4.7123 0"/>
+  <xacro:leg_uttu_v0 parent="base_link" suffix="rr" xyz="-0.1248 -0.06164 0.001116" rpy="0 4.7123 -0.7853981633974483"/>
+
+  <xacro:leg_uttu_v0 parent="base_link" suffix="lf" xyz="0.1248 0.06164 0.001116" rpy="0 4.7123 2.356194490192345"/>
+  <xacro:leg_uttu_v0 parent="base_link" suffix="lm" xyz="0 0.1034 0.001116" rpy="0 4.7123 3.14159"/>
+  <xacro:leg_uttu_v0 parent="base_link" suffix="lr" xyz="-0.1248 0.06164 0.001116" rpy="0 4.7123 3.9269908169872414"/>
+
+  <!-- =============== Gazebo =============== -->
+
+  <!-- Hexapod Base -->
+  <xacro:base_uttu_gazebo_v0/>
+
+
+  <!-- Hexapod Legs -->
+  <xacro:leg_uttu_gazebo_v0 suffix="rf"/>
+  <xacro:leg_uttu_gazebo_v0 suffix="rm"/>
+  <xacro:leg_uttu_gazebo_v0 suffix="rr"/>
+
+  <xacro:leg_uttu_gazebo_v0 suffix="lf"/>
+  <xacro:leg_uttu_gazebo_v0 suffix="lm"/>
+  <xacro:leg_uttu_gazebo_v0 suffix="lr"/>
+
+  <xacro:hexapod_robot_gazebo/>
+  <xacro:hexapod_robot_ros2_control/>
+    
+</robot>

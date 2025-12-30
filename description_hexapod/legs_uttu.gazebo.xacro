@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="leg_uttu_gazebo_v0" params="suffix">
+
+    <gazebo reference="c1_${suffix}">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+
+    <gazebo reference="c2_${suffix}">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+
+    <gazebo reference="thigh_${suffix}">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+
+    <gazebo reference="tibia_${suffix}">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+
+  </xacro:macro>
+
+</robot>

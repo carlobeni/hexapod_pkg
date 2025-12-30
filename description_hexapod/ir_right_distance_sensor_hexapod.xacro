@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Joint fijo -->
+  <joint name="ir_right_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="ir_right_link"/>
+    <origin xyz="0.0 -0.065 0.10" rpy="0 0 -1.5708"/>
+  </joint>
+
+  <!-- Link del sensor IR -->
+  <link name="ir_right_link">
+
+    <inertial>
+      <mass value="0.005"/>
+      <inertia
+        ixx="1e-6" ixy="0" ixz="0"
+        iyy="1e-6" iyz="0"
+        izz="1e-6"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+        <!-- Forma del JS40F -->
+        <box size="0.01 0.01 0.01"/>
+      </geometry>
+      <material name="black"/>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="0.008 0.04 0.012"/>
+      </geometry>
+    </collision>
+
+  </link>
+
+  <!-- Gazebo -->
+  <gazebo reference="ir_right_link">
+    <material>Gazebo/Black</material>
+    <selfCollide>false</selfCollide>
+
+    <!-- IR reflectivo emulado -->
+    <sensor name="ir_right_js40f" type="gpu_lidar">
+      <always_on>true</always_on>
+      <visualize>false</visualize>
+
+      <pose>0 0 0 0 0 0</pose>
+
+      <!-- IR es rápido -->
+      <update_rate>30</update_rate>
+
+      <topic>sensor/gazebo_ir_right_sensor</topic>
+      <gz_frame_id>ir_right_link</gz_frame_id>
+
+      <lidar>
+        <scan>
+          <horizontal>
+            <!-- Haz casi puntual -->
+            <samples>1</samples>
+
+            <!-- ~6° total -->
+            <min_angle>-0.052</min_angle>
+            <max_angle>0.052</max_angle>
+          </horizontal>
+        </scan>
+
+        <!-- Rango corto -->
+        <range>
+          <min>0.04</min>
+          <max>0.40</max>
+          <resolution>0.002</resolution>
+        </range>
+
+        <!-- Mucho ruido (IR reflectivo) -->
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </lidar>
+    </sensor>
+
+  </gazebo>
+
+</robot>

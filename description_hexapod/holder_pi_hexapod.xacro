@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+
+    <joint name="holder_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="holder_link"/>
+        <origin xyz="-0.115 0.435 -0.095" rpy="1.5708 0 -0.0174533"/>
+    </joint>
+
+    <link name="holder_link">
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+            <mesh filename="$(find hexapod_pkg)/meshes/holder_pi_uttu.STL"  scale="0.0012 0.0012 0.0012"/>
+          </geometry>
+          <material name="Grey">
+            <color rgba="0.20 0.20 0.20 1.0"/>
+          </material>
+        </visual>
+    </link>
+
+    <gazebo reference="holder_link">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+
+
+
+</robot>

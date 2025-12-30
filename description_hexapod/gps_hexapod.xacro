@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+
+    <joint name="gps_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="gps_link"/>
+        <origin xyz="0 0.011 0.025" rpy="0 0 0"/>
+    </joint>
+
+    <link name="gps_link">
+        <visual>
+            <geometry>
+                <box size="0.01 0.01 0.005"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+
+    <gazebo reference="gps_link">
+      <selfCollide>false</selfCollide>
+    </gazebo>
+
+    <gazebo reference="gps_link">
+        <material>Gazebo/Red</material>
+        <sensor name="gps_sensor" type="navsat">
+        <topic>/nav_msgs</topic>
+        <update_rate>10</update_rate>
+        <navsat>
+            <reference_latitude>-25.33057507763572</reference_latitude>
+            <reference_longitude>-57.51813474688503</reference_longitude>
+            <reference_altitude>80.0</reference_altitude>
+            <velocity_smoothing>true</velocity_smoothing>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.00005</mean>
+            <stddev>0.1</stddev>
+          </noise>
+
+        </navsat>
+        </sensor>
+    </gazebo>
+
+</robot>

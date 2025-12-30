@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Joint fijo -->
+  <joint name="ultrasonic_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="ultrasonic_link"/>
+    <origin xyz="0.115 0 0.1" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Link del sensor -->
+  <link name="ultrasonic_link">
+
+    <visual>
+      <geometry>
+        <box size="0.005 0.04 0.01"/>
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <!-- Gazebo -->
+<gazebo reference="ultrasonic_link">
+  <material>Gazebo/Blue</material>
+  <selfCollide>false</selfCollide>
+
+  <sensor name="ultrasonic_front" type="gpu_lidar">
+    <always_on>true</always_on>
+    <visualize>true</visualize>
+
+    <!-- Pose relativa al link -->
+    <pose>0 0 0 0 0 0</pose>
+
+    <!-- HC-SR04 ~10 Hz típico -->
+    <update_rate>10</update_rate>
+
+    <topic>ultrasonic/scan</topic>
+    <gz_frame_id>ultrasonic_link</gz_frame_id>
+
+    <lidar>
+      <scan>
+        <horizontal>
+          <!-- 1 rayo = medición única -->
+          <!-- puedes subir a 3 si quieres más robustez -->
+          <samples>3</samples>
+
+          <!-- 15° total -->
+          <min_angle>-0.131</min_angle>
+          <max_angle>0.131</max_angle>
+        </horizontal>
+      </scan>
+
+      <range>
+        <min>0.02</min>
+        <max>4.5</max>
+        <resolution>0.001</resolution>
+      </range>
+
+      <!-- Precisión ~±3 mm -->
+      <noise>
+        <type>gaussian</type>
+        <mean>0.0</mean>
+        <stddev>0.003</stddev>
+      </noise>
+    </lidar>
+  </sensor>
+
+</gazebo>
+
+</robot>

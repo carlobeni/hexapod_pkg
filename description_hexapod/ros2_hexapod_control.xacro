@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="hexapod_robot_ros2_control">
+
+    <ros2_control name="GazeboSystem" type="system">
+      <hardware>
+        <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+      </hardware>
+
+      <!-- ========== RF LEG ========== -->
+      <joint name="j_c1_rf">
+        <param name="gazebo_joint">j_c1_rf</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <joint name="j_thigh_rf">
+        <param name="gazebo_joint">j_thigh_rf</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <joint name="j_tibia_rf">
+        <param name="gazebo_joint">j_tibia_rf</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <!-- ========== RM LEG ========== -->
+      <joint name="j_c1_rm">
+        <param name="gazebo_joint">j_c1_rm</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <joint name="j_thigh_rm">
+        <param name="gazebo_joint">j_thigh_rm</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <joint name="j_tibia_rm">
+        <param name="gazebo_joint">j_tibia_rm</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <!-- ========== RR LEG ========== -->
+      <joint name="j_c1_rr">
+      <param name="gazebo_joint">j_c1_rr</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <joint name="j_thigh_rr">
+        <param name="gazebo_joint">j_thigh_rr</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <joint name="j_tibia_rr">
+        <param name="gazebo_joint">j_tibia_rr</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <!-- ========== LF LEG ========== -->
+      <joint name="j_c1_lf">
+        <param name="gazebo_joint">j_c1_lf</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <joint name="j_thigh_lf">
+        <param name="gazebo_joint">j_thigh_lf</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <joint name="j_tibia_lf">
+        <param name="gazebo_joint">j_tibia_lf</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <!-- ========== LM LEG ========== -->
+      <joint name="j_c1_lm">
+        <param name="gazebo_joint">j_c1_lm</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <joint name="j_thigh_lm">
+        <param name="gazebo_joint">j_thigh_lm</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <joint name="j_tibia_lm">
+        <param name="gazebo_joint">j_tibia_lm</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <!-- ========== LR LEG ========== -->
+      <joint name="j_c1_lr">
+        <param name="gazebo_joint">j_c1_lr</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <joint name="j_thigh_lr">
+        <param name="gazebo_joint">j_thigh_lr</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+      <joint name="j_tibia_lr">
+        <param name="gazebo_joint">j_tibia_lr</param>
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+        <state_interface name="effort"/>
+      </joint>
+
+    </ros2_control>
+
+  </xacro:macro>
+
+</robot>

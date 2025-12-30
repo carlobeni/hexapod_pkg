@@ -1,0 +1,324 @@
+============================================================
+HEXAPOD PROJECT — SYSTEM OVERVIEW
+============================================================
+
+
+------------------------------------------------------------
+CORE IDEA
+------------------------------------------------------------
+
+This project implements a **dual-execution hexapod architecture**:
+
+- One logical brain
+- Two physical realities
+
+The same high-level behaviors operate on:
+- a Gazebo simulation
+- a real hexapod robot
+
+The difference is NOT in intelligence,
+but in the **final actuation layer**.
+
+
+------------------------------------------------------------
+DUALITY: SIMULATION vs REAL ROBOT
+------------------------------------------------------------
+
+The system is intentionally split into two worlds:
+
+SIMULATION:
+-----------
+- Gazebo + ros_gz_bridge
+- Physics-based feedback
+- Visual social behaviors
+- No hardware constraints
+- Fast iteration and debugging
+
+REAL ROBOT:
+-----------
+- Raspberry Pi + Arduino
+- Real sensors, noise, latency
+- No fake physics
+- Strict hardware limits
+- Physical consequences
+
+
+------------------------------------------------------------
+KEY UNIFYING PRINCIPLE
+------------------------------------------------------------
+
+All modes generate the same abstraction:
+
+    std_msgs/String  →  "cmd_robot"
+
+What changes is:
+- where it is interpreted
+- how it is executed
+- how much freedom exists
+
+
+------------------------------------------------------------
+COMMAND PIPELINE (ABSTRACT)
+------------------------------------------------------------
+
+Behavior / Navigation / Social Logic
+                ↓
+        cmd_robot (String)
+                ↓
+------------------------------------
+SIMULATION:
+    gz_hexapod_low_level_control
+        → joint trajectories
+
+REAL ROBOT:
+    dds_cmd_talker
+        → serial protocol
+        → Arduino firmware
+------------------------------------
+
+
+============================================================
+MAIN MODES OF OPERATION
+============================================================
+
+
+------------------------------------------------------------
+1) FOLLOWER MODE
+------------------------------------------------------------
+
+PURPOSE:
+--------
+Track and follow a moving visual target
+(e.g. a ball or object).
+
+
+PERCEPTION:
+-----------
+- Camera (YOLO-based detection)
+- Target position in image space
+- Obstacle occupation grid
+
+
+CONTROL:
+--------
+- Relative motion generation
+- Continuous correction
+- Reactive behavior
+
+
+SIMULATION:
+-----------
+- Perfect camera stream
+- No motor backlash
+- Visual validation of tracking
+
+
+REAL ROBOT:
+-----------
+- Phone / USB camera
+- Latency-sensitive
+- Motion stability becomes critical
+
+
+------------------------------------------------------------
+2) NAVIGATION TO TARGET MODE
+------------------------------------------------------------
+
+PURPOSE:
+--------
+Move autonomously toward a global target
+while avoiding obstacles.
+
+
+PERCEPTION:
+-----------
+- GPS (global position)
+- Heading (IMU / phone)
+- Ultrasonic sensors
+- IR proximity sensors
+
+
+COMPUTATION:
+------------
+- GPS → local XY conversion
+- Heading estimation
+- Dead-reckoning fusion
+- Obstacle monitoring
+
+
+CONTROL:
+--------
+- Goal-oriented motion
+- Obstacle avoidance
+- Continuous replanning
+
+
+CRITICAL NOTE:
+--------------
+`sensors_compute_*` launch MUST be running.
+Without it, navigation is blind.
+
+
+------------------------------------------------------------
+3) SWARM FOLLOWER MODE
+------------------------------------------------------------
+
+PURPOSE:
+--------
+Follow a leader or group behavior
+using minimal global information.
+
+
+PERCEPTION:
+-----------
+- Visual target (YOLO)
+- Obstacle occupation grid
+
+
+CONTROL:
+--------
+- Collective-style motion
+- Simplified navigation rules
+- No global map dependency
+
+
+SIMULATION:
+-----------
+- Multi-agent logic validation
+- Behavior-level testing
+
+
+REAL ROBOT:
+-----------
+- Acts as single agent
+- Swarm logic collapses to follower logic
+- Still useful as coordination prototype
+
+
+------------------------------------------------------------
+4) SOCIAL ROBOT MODE
+------------------------------------------------------------
+
+PURPOSE:
+--------
+Human–robot interaction via gestures.
+
+
+PERCEPTION:
+-----------
+- Camera
+- MediaPipe hand landmarks
+
+
+LOGIC:
+------
+- Deterministic geometric gesture detection
+- Event-based command generation
+
+
+GESTURES:
+---------
+- ROCK
+- AL_PELO
+- VICTORY
+
+
+SIMULATION:
+-----------
+- Gestures trigger symbolic poses
+- Visual expressiveness
+- Social meaning preserved
+
+
+REAL ROBOT:
+-----------
+- Same gestures → motion commands
+- No social poses in Arduino
+- Semantics collapse into locomotion
+
+
+IMPORTANT:
+----------
+Social meaning exists only
+where interpretation exists.
+
+
+------------------------------------------------------------
+5) TELEOP MODE
+------------------------------------------------------------
+
+PURPOSE:
+--------
+Direct human control.
+
+
+INPUT:
+------
+- Keyboard
+- External controller
+- Manual command publisher
+
+
+ROLE:
+-----
+- Debugging
+- Safety override
+- Calibration
+- Emergency control
+
+
+SIMULATION & REAL:
+------------------
+Identical at command level.
+Different only in execution risk.
+
+
+============================================================
+BALANCE CONTROLLER (EXTRA)
+============================================================
+
+PURPOSE:
+--------
+Maintain stability during motion
+and compensate disturbances.
+
+
+CONCEPTUAL ROLE:
+----------------
+This controller lives BELOW navigation
+and ABOVE raw actuation.
+
+
+INPUTS:
+-------
+- IMU
+- Estimated body orientation
+- Motion commands
+
+
+FUNCTION:
+---------
+- Postural correction
+- Roll / pitch stabilization
+- Gait robustness improvement
+
+
+SIMULATION:
+-----------
+- NO IMPLEMENTED YET!!!
+
+
+REAL ROBOT:
+-----------
+- Compensates:
+    - uneven terrain
+    - servo delays
+    - mechanical asymmetry
+
+
+DESIGN PHILOSOPHY:
+------------------
+Balance is not intelligence.
+It is *physiology*.
+
+
