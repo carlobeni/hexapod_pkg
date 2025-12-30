@@ -87,26 +87,26 @@ pip install torch torchvision torchaudio
 pip install ultralytics
 pip install opencv-python
 ```
-## 1.8. Install opencv-python in the system:
+### 1.8. Install opencv-python in the system:
 ```bash
 sudo apt install python3-opencv
 ```
 
-### 1.5. Create a ROS2 workspace:
+### 1.9. Create a ROS2 workspace:
 ```bash
 mkdir -p ~/ros2_hex_tutorial_ws/src
 cd ~/ros2_ws/src
 ```
-### 1.6. Clone the repository into src directory:
+### 1.10. Clone the repository into src directory:
 ```bash
 git clone https://github.com/carlobeni/hexapod_pkg.git
 ```
-### 1.7. Build the workspace:
+### 1.11. Build the workspace:
 ```bash
 cd ~/ros2_hex_tutorial_ws
 colcon build --symlink-install
 ```
-### 1.8. Source the workspace permanently:
+### 1.12. Source the workspace permanently:
 ```bash
 echo "source ~/ros2_hex_tutorial_ws/install/setup.bash" >> ~/.bashrc
 ```
