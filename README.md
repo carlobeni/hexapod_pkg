@@ -156,7 +156,7 @@ echo "source ~/ros2_hex_tutorial_ws/install/setup.bash" >> ~/.bashrc
 ```
 
 ## 3. Arduino Mega installation
-Load by Arduino IDE the sketch `hexapod_pkg/arduino/hexapod/hexapod.ino`
+Load by Arduino IDE the sketch `hexapod_pkg/arduino/Hexapod2.ino`
 
 
 
