@@ -5,7 +5,6 @@ This guide explains how to install and configure the **Hexapod Project** on:
 - **Raspberry Pi**
 - **Arduino Mega**
 
-The guide is focused on **installation and setup only**.
 ---
 ## Setup Characteristics (Reference System)
 
