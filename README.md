@@ -6,7 +6,6 @@ This guide explains how to install and configure the **Hexapod Project** on:
 - **Arduino Mega**
 
 The guide is focused on **installation and setup only**.
-
 ---
 ## Setup Characteristics (Reference System)
 
@@ -101,7 +100,7 @@ cd ~/ros2_ws/src
 ```
 ### 1.6. Clone the repository into src directory:
 ```bash
-git clone https://github.com/carlobeni/ros2_hex_tutorial_ws.git
+git clone https://github.com/carlobeni/hexapod_pkg.git
 ```
 ### 1.7. Build the workspace:
 ```bash
@@ -145,7 +144,7 @@ cd ~/ros2_ws/src
 ```
 ### 2.4. Clone the repository into src directory:
 ```bash
-git clone https://github.com/carlobeni/ros2_hex_tutorial_ws.git
+git clone https://github.com/carlobeni/hexapod_pkg.git
 ```
 ### 2.5. Build the workspace:
 ```bash
