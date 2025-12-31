@@ -1,4 +1,10 @@
-# Hexapod Project — Installation Guide
+# Hexapod Project 
+<p align="center">
+  <img src="Hexapod.jpg" alt="The hexapod robot" width="700">
+</p>
+
+
+# Installation Guide
 
 This guide explains how to install and configure the **Hexapod Project** on:
 - **PC (Laptop / Desktop)**
