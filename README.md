@@ -37,6 +37,7 @@ echo "source /opt/ros/rolling/setup.bash" >> ~/.bashrc
 echo "source /usr/share/colcon_cd/function/colcon_cd.sh" >> ~/.bashrc
 ```
 OBS: Change `rolling` with your ROS2 distribution (`humble`, `jazzy`, etc.)
+
 ### 1.4. Intall Gazebo
 ```bash
 sudo apt-get install ros-rolling-gazebo-ros-pkgs
