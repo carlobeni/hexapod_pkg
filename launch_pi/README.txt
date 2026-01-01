@@ -29,12 +29,12 @@ Its sole purpose is to:
 
 
 ============================================================
-launch_pi / read_sensors_rasberrypi.launch.py
+launch_pi / read_sensors_raspberrypi.launch.py
 ============================================================
 
 NODE NAME:
 ----------
-read_sensors_rasberrypi.launch.py
+read_sensors_raspberrypi.launch.py
 
 
 ------------------------------------------------------------
