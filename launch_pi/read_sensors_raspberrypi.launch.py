@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# read_sensors_rasberrypi.launch.py
+# read_sensors_raspberrypi.launch.py
 
 from launch import LaunchDescription
 from launch_ros.actions import Node
